@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Translation and Summarization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📰 News Translation & Summarization</h1>
+
+        <form method="POST">
+            <label for="news">Paste News Article:</label><br>
+            <textarea name="news" rows="10" cols="100" placeholder="Paste non-English news text here..." required>{{ request.form.news }}</textarea><br><br>
+            <button type="submit">Translate & Summarize</button>
+        </form>
+
+        {% if translated_text %}
+            <h2>🌍 Translated Text:</h2>
+            <p>{{ translated_text }}</p>
+        {% endif %}
+
+        {% if summary %}
+            <h2>📝 Summary:</h2>
+            <p>{{ summary }}</p>
+        {% endif %}
+
+        {% if rouge %}
+            <h2>📊 ROUGE Score:</h2>
+            <p>{{ rouge }}</p>
+        {% endif %}
+
+        {% if bleu %}
+            <h2>📊 BLEU Score:</h2>
+            <p>{{ bleu }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
